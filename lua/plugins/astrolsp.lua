@@ -7,6 +7,17 @@ return {
   ---@type AstroLSPOpts
   opts = {
     config = {
+      clangd = {
+        cmd = {
+          "clangd",
+          "--log=verbose",
+          "--query-driver="
+            .. vim.fn.expand "~"
+            .. "/.platformio/packages/*/bin/arm-*-eabi-g*,"
+            .. vim.fn.getcwd()
+            .. "/toolchain/*/bin/arm-*-eabi-g*",
+        },
+      },
     },
   },
 }
