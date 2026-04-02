@@ -1,3 +1,29 @@
--- This will run last in the setup process.
--- This is just pure lua so anything that doesn't
+-- This will run last in the setup process and is a good place to configure
+-- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
+
+-- Trigger checktime in various events to detect external changes.
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "checktime",
+})
+
+-- Custom :DiffOrig command to compare the current modified buffer
+-- with the behind-the-scenes edits saved to disk.
+vim.api.nvim_create_user_command("DiffOrig", function()
+  vim.cmd "vert new"
+  vim.bo.buftype = "nofile"
+  vim.cmd "read ++edit #"
+  vim.cmd "0d_"
+  vim.cmd "diffthis"
+  vim.cmd "wincmd p"
+  vim.cmd "diffthis"
+end, {})
+
+-- Custom :SaveBackupAndReload command to save the current modified buffer
+-- to a backup file before reloading the disk version.
+vim.api.nvim_create_user_command("SaveBackupAndReload", function()
+  local backup_name = vim.fn.expand "%" .. ".backup." .. os.date "%Y%m%d_%H%M%S"
+  vim.cmd("write " .. backup_name)
+  vim.notify("Saved backup to: " .. backup_name, vim.log.levels.INFO)
+  vim.cmd "edit!"
+end, {})
