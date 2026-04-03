@@ -6,6 +6,12 @@ return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
   opts = {
+    options = {
+      opt = {
+        wildmode = "longest:list,full",
+        wildoptions = "tagfile",
+      },
+    },
     mappings = {
       n = {
         ["<C-n>"] = {
