@@ -10,5 +10,15 @@ return {
         winblend = 0,
       },
     },
+    config = function(_, opts)
+      require("bqf").setup(opts)
+      local PreviewSession = require "bqf.preview.session"
+      local old_new = PreviewSession.new
+      PreviewSession.new = function(self, winid, focusable)
+        local session = old_new(self, winid, focusable)
+        session.full = true
+        return session
+      end
+    end,
   },
 }
