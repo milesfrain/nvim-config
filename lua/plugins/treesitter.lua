@@ -3,6 +3,19 @@
 -- Treesitter customizations are handled with AstroCore
 -- as nvim-treesitter simply provides a download utility for parsers
 
+-- Register custom parsers before TSUpdate runs
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").flatbuffers = {
+      install_info = {
+        url = "https://github.com/smpanaro/tree-sitter-flatbuffers",
+        queries = "queries",
+      },
+    }
+  end,
+})
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",

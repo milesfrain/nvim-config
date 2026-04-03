@@ -2,6 +2,10 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+-- FlatBuffers filetype detection and treesitter parser mapping
+vim.filetype.add({ extension = { fbs = "flatbuffers" } })
+vim.treesitter.language.register("flatbuffers", "flatbuffers")
+
 -- Trigger checktime in various events to detect external changes.
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "checktime",
