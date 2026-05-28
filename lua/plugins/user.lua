@@ -4,6 +4,10 @@
 ---@type LazySpec
 return {
   {
+    "max397574/better-escape.nvim",
+    enabled = false,
+  },
+  {
     "kevinhwang91/nvim-bqf",
     opts = {
       preview = {
