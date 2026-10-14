@@ -8,6 +8,7 @@ return {
       ensure_installed = {
         "clangd",
         "pyright",
+        "prettier",
         -- "svlangserver", -- verilog, rarely used
 
         -- Installed by default or by other packs

@@ -6,6 +6,11 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    formatting = {
+      format_on_save = {
+        ignore_filetypes = { "markdown" },
+      },
+    },
     config = {
       clangd = {
         cmd = {
