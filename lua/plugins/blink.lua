@@ -4,6 +4,7 @@ return {
     sources = {
       providers = {
         buffer = { enabled = false },
+        snippets = { enabled = false },
       },
     },
     cmdline = {
